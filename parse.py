@@ -5,25 +5,29 @@ SEPARATOR = '\t'
 
 def parse(horizontalCode):
 	lines = horizontalCode.split('\n')
-	chunks = {}
+	codeBlocks = {}
 	i = 1
 	while (len(lines[i]) > 0):
 		partition = lines[i].partition(SEPARATOR)
-		chunkIndex = 0
+		blockIndex = 0
 		while (partition[1] == SEPARATOR):
 			if (len(partition[0]) > 0):
 				print "partition[0]: " + partition[0]
+				print "blockIndex: " + str(blockIndex)
 				if (i == 1):
-					chunks[chunkIndex] = partition[0]
-					chunks[chunkIndex] = '\n' 
-					chunkIndex += 1
+					print "new string"
+					codeBlocks[blockIndex] = partition[0]
+					codeBlocks[blockIndex] += '\n' 
+					print "codeBlocks[blockIndex]: " + codeBlocks[blockIndex]
 				else:
-					chunks[chunkIndex] += partition[0]
-					chunks[chunkIndex] += '\n'
-					chunkIndex += 1
+					print "adding to string"
+					codeBlocks[blockIndex] += partition[0]
+					codeBlocks[blockIndex] += '\n'
+				print "codeBlocks[blockIndex]: " + str(codeBlocks[blockIndex])
+				blockIndex += 1
 			partition = partition[2].partition(SEPARATOR)
 		i+=1
-	print chunks
+	print codeBlocks
 		
 
 # examples
