@@ -1,7 +1,7 @@
 # Parsing helpers
 import random, time
 
-SEPARATOR = '\t'
+SEPARATOR = '|'
 
 def parse(horizontalCode):
 	lines = horizontalCode.split('\n')
@@ -31,10 +31,10 @@ def parse(horizontalCode):
 
 # examples
 horizontalCode = """
-print "hey"			print "whats up"		i = random.randint(1, 10)
-print "gorgeous"		i = random.randomint(1, 10)	if (i < 5)
-x = random.randomint(1, 10)	if (i > 5):				print "swolll":
-print x					print "super swoll"
+print "hey"			|print "whats up"		|i = random.randint(1, 10)
+print "gorgeous"		|i = random.randomint(1, 10)	|if (i < 5)
+x = random.randomint(1, 10)	|if (i > 5):			|	print "swolll":
+print x				|	print "super swoll"	|
 """
 
 parse (horizontalCode);
