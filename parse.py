@@ -10,24 +10,23 @@ def parse(horizontalCode):
 	while (len(lines[i]) > 0):
 		partition = lines[i].partition(SEPARATOR)
 		blockIndex = 0
-		while (partition[1] == SEPARATOR):
+		while (len(partition[1]) > 0):
 			if (len(partition[0]) > 0):
-				print "partition[0]: " + partition[0]
-				print "blockIndex: " + str(blockIndex)
 				if (i == 1):
-					print "new string"
 					codeBlocks[blockIndex] = partition[0]
 					codeBlocks[blockIndex] += '\n' 
-					print "codeBlocks[blockIndex]: " + codeBlocks[blockIndex]
 				else:
-					print "adding to string"
 					codeBlocks[blockIndex] += partition[0]
 					codeBlocks[blockIndex] += '\n'
-				print "codeBlocks[blockIndex]: " + str(codeBlocks[blockIndex])
 				blockIndex += 1
 			partition = partition[2].partition(SEPARATOR)
+		if (i == 1):
+			codeBlocks[blockIndex] = partition[0] + '\n'
+		else:
+			codeBlocks[blockIndex] += partition[0] + '\n'
 		i+=1
-	print codeBlocks
+	for index in codeBlocks:
+		print codeBlocks[index] 
 		
 
 # examples
