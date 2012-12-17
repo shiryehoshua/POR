@@ -20,4 +20,10 @@ Run `compiler.py -d <directory> > <file>` - this outputs the final Python code t
 See `compiler.py --help` for more information.
 
 - Minke Zhang, Shir Yehoshua
-- v. 0.8.0 - 17 Dec. 2012
+- v. 0.8.0, 17 Dec. 2012
+
+Examples:
+
+`blocks.py` - Demonstrates how both sequential and concurrent For loops can be instantiated using the base architecture - this has yet to be 
+	implemented at the parser level.
+`variables.py` - Demonstrates simple variable sharing.
