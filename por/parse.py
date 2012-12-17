@@ -1,5 +1,5 @@
 # Parsing helpers
-import random, time, re
+import random, time, re, sys
 
 SEPARATOR = '|'
 
@@ -90,7 +90,7 @@ def createThreadFiles(horizontalCode):
 	i = 0
 	for codeBlock in codeBlocks:
 		icbi = interpret(codeBlock)
-		fp = open ("./a_" + str(i) + ".thread", 'w+')
+		fp = open("./a_" + str(i) + ".thread", 'w+')
 		fp.write(icbi.codeBlock)
 		fp.close
 		i += 1
@@ -106,4 +106,13 @@ x = random.randint(1, 10)	|if (i > 5):			|	print "swolll"
 print x				|	print "super swoll"	|
 """
 
-createThreadFiles(horizontalCode)
+def main():
+	if len(sys.argv) == 2:
+		fp = open(sys.argv[1], 'r')
+		createThreadFiles(fp.read())
+		fp.close()
+	else:
+		createThreadFiles(horizontalCode)
+	print "done"
+
+main()
