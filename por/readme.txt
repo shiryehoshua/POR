@@ -19,7 +19,7 @@ Run `compiler.py -d <directory> > <file>` - this outputs the final Python code t
 
 See `compiler.py --help` for more information.
 
-- Minke Zhang, Shir Yehoshua
+- Minke Zhang, Shir Yehoshua, Kevin Zhang
 - v. 0.8.0, 17 Dec. 2012
 
 Examples:
