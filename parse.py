@@ -26,16 +26,32 @@ def parse(horizontalCode):
 			codeBlocks[blockIndex] += partition[0] + '\n'
 		i+=1
 	return codeBlocks.values()
-		
+
+class InterprettedCodeBlockInfo:
+	def __init__(self, variables, codeBlock, changesData=False, accessesData=False):
+		self.variables = variables
+		self.codeBlock = codeBlock
+		self.changesData = changesData
+		self.accessesData = accessesData
+
+	def getDependencies(self, otherInfo):
+		dependencies = []
+		for var in self.variables:
+			if var in otherInfo.variables:
+				dependencies.append(var)
+		return dependencies
+
 def interpret(codeBlock):
 	# Variables will store all the global variables declared
 	# in this codeBlock.
 	variables = []
 	lines = codeBlock.split('\n')
+	changesData = False 
+	accessesData = False
 
 	# If there is nothing in this code block, just return
 	if (not(lines)):
-		return
+		return None 
 
 	# Acquire all the global variables
 	firstLine = lines[0].split()
@@ -43,7 +59,6 @@ def interpret(codeBlock):
 		del firstLine[0]
 		for var in firstLine:
 			variables.append(var)
-		print variables
 
 	# Replace instances of var with appropriate threaded things
 	newCodeBlock = codeBlock
@@ -57,16 +72,28 @@ def interpret(codeBlock):
 						"SetReq('" + var + "', '" + 
 						value + "').send(self.var['queue'])",
 						newCodeBlock)
+				changesData = True
 			# Replace all the instances of var
 			# GetReq('var').recv(self.var['queue']) 
 			elif line != lines[0]:
 				newLine = re.sub(var,
 						"GetReq('" + var + "').recv(self.var['queue'])",
 						line)
+				if newLine != line:
+					accessesData = True
 				newCodeBlock = re.sub(re.escape(line), newLine, newCodeBlock)
-	return newCodeBlock		
-		
-		
+	return InterprettedCodeBlockInfo(variables, newCodeBlock, changesData, accessesData) 
+
+def createThreadFiles(horizontalCode):
+	codeBlocks = parse(horizontalCode)
+	interpretedCodeBlockInfos = []
+	i = 0
+	for codeBlock in codeBlocks:
+		icbi = interpret(codeBlock)
+		fp = open ("./a_" + str(i) + ".thread", 'w+')
+		fp.write(icbi.codeBlock)
+		fp.close
+		i += 1
 
 # examples
 
@@ -78,9 +105,5 @@ x = random.randomint(1, 10)	|if (i > 5):			|	print "swolll"
 print x				|	print "super swoll"	|
 """
 
-for codeBlock in parse(horizontalCode):
-	print "---codeBlock---"
-	print codeBlock
-	print "---interpretation----"
-	print interpret(codeBlock)
+createThreadFiles(horizontalCode)
 	
