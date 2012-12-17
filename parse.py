@@ -69,8 +69,8 @@ def interpret(codeBlock):
 			value = re.sub(r"^[\W]*" + var + "[\W]*=[\W]*", "", line)
 			if value != line:
 				newCodeBlock = re.sub(re.escape(line),
-						"SetReq('" + var + "', '" + 
-						value + "').send(self.var['queue'])",
+						"SetReq('" + var + "', " + 
+						value + ").send(self.var['queue'])",
 						newCodeBlock)
 				changesData = True
 			# Replace all the instances of var
