@@ -1,4 +1,8 @@
-PORE
+P||
 ====
 
-Poorly Written Parallel Programming
+Python in Parallel.
+
+Or, if you prefer...
+
+PoORly Written Parallel Programming
