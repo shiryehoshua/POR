@@ -1,0 +1,3 @@
+SetReq('foo2', 'value2').send(self.var['queue'])
+# note that foo1 is not initiated in this process
+print(('value of foo1 is: %s') % (GetReq('foo1').recv(self.var['queue'])))

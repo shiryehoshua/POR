@@ -1,0 +1,2 @@
+SetReq('foo1', 'value1').send(self.var['queue'])
+

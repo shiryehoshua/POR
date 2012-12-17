@@ -19,5 +19,4 @@ while True:
 			# closes input thread - no more information can be sent in this Pipe()
 			# prevents requesting Req() from hanging while waiting for non-existent data
 			pRes.close()
-
 """

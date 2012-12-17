@@ -19,7 +19,7 @@ def main():
 
 	# handler logic to handle shared variables
 	#	http://bit.ly/U1VNtT
-	handler = Proc('reader', handler, {'queue' : queue, 'globals' : Manager().dict()})
+	handler = Proc('handler', handler, {'queue' : queue, 'globals' : Manager().dict()})
 	handler.daemon = True
 	handler.start()
 
