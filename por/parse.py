@@ -99,11 +99,11 @@ def createThreadFiles(horizontalCode):
 
 horizontalCode = """
 global x			|				|global x
+import random			|import random			|import random
 print "hey"			|print "whats up"		|i = x 
-print "gorgeous"		|i = random.randomint(1, 10)	|if (i < 5)
-x = random.randomint(1, 10)	|if (i > 5):			|	print "swolll"
+print "gorgeous"		|i = random.randint(1, 10)	|if (i < 5):
+x = random.randint(1, 10)	|if (i > 5):			|	print "swolll"
 print x				|	print "super swoll"	|
 """
 
 createThreadFiles(horizontalCode)
-	
