@@ -25,16 +25,17 @@ def parse(horizontalCode):
 		else:
 			codeBlocks[blockIndex] += partition[0] + '\n'
 		i+=1
-	for index in codeBlocks:
-		print codeBlocks[index] 
+	return codeBlocks.values()
 		
 
 # examples
 horizontalCode = """
 print "hey"			|print "whats up"		|i = random.randint(1, 10)
 print "gorgeous"		|i = random.randomint(1, 10)	|if (i < 5)
-x = random.randomint(1, 10)	|if (i > 5):			|	print "swolll":
+x = random.randomint(1, 10)	|if (i > 5):			|	print "swolll"
 print x				|	print "super swoll"	|
 """
 
-parse (horizontalCode);
+for codeBlock in parse(horizontalCode):
+	print codeBlock
+	
